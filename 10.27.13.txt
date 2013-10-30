@@ -1,0 +1,8 @@
+10.27.13
+
+
+SoundTesting.java - reacts to clap, arm moves to set degree radius
+
+MotorTutor3.java - testing the hinge of the arm
+
+LightTest.java - possible light sensor movement
