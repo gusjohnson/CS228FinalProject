@@ -2,54 +2,55 @@ import lejos.nxt.*;
 import lejos.util.Delay;
 import java.lang.*;
 
-/**
- 8  * Simplest 3 motor commands
- 9  * @author owner.GLASSEY
-10  *
-11  */
-
 public class SoundTesting
 {
    /**
    * @param args
    */
-
-   public static void main(String[] args)
+  public static void main(String[] args)
     { 
-	   
-	  boolean taskComplete;
-	  boolean clawClosed;
-	  //boolean clawOpened;
-      taskComplete = Button.ESCAPE.isPressed();
+           
+    boolean taskComplete;
+	boolean pickupComplete = false;
+	boolean dropComplete = false;
+    taskComplete = Button.ESCAPE.isPressed();
 	  
-	  while (!taskComplete) {
-	   
-	   Motor.B.setSpeed(45);
-	   Motor.A.setSpeed(10);
-	   Delay.msDelay(200);
-	   SoundSensor sound = new SoundSensor(SensorPort.S2);
-	   int soundValue = sound.readValue();
-	   System.out.println(soundValue);
+    while (!taskComplete) {
+		Motor.B.setSpeed(45);
+	    Motor.A.setSpeed(10);
+		Motor.C.setSpeed(35);
+	    SoundSensor sound = new SoundSensor(SensorPort.S2);
        
-		while (!clawClosed) {
-		   if (soundValue > 70)
-		   {
-			  Motor.B.setSpeed(30);
-			  Motor.B.rotate(-130);
-			  //System.out.println(soundValue);
-			  Motor.A.rotate(140);
-		   } //if
-		   clawClosed = true;
-	   } //while
 		
-		int soundValue2=sound.readValue();
+		while (pickupComplete == false) {
+			Delay.msDelay(200);
+			int soundValue = sound.readValue();
+			System.out.println(soundValue);
+			if (soundValue > 40)
+			   {
+				 Motor.B.setSpeed(30);
+				 Motor.B.rotate(-120);
+				 Motor.C.rotate(90);
+				 Motor.A.rotate(45);
+				 System.out.println(soundValue);
+				 pickupComplete = true;
+			   } //if
+		} //while pickupComplete
+         
+        
+        while (dropComplete == false) {
+			int soundValue = sound.readValue();
+			System.out.println(soundValue);
+			if (soundValue > 40){ 
+				Motor.B.rotate(95);
+				taskComplete = true;
+				dropComplete = true;
+			} //if
+		} //while dropComplete
 		
-		if	(soundValue2 > 70){ 
-		  Motor.B.rotate(130);
-		  Motor.A.rotate(-140);
-		  taskComplete = true;
-		} //if
-	    
-	   } // while (!taskComplete)
-	  } //main
-	} //class
+           
+	} //while taskComplete
+          
+ } //main
+        
+} //class
