@@ -9,17 +9,17 @@ public class SoundLight
    */
   public static void main(String[] args)
     { 
-           
+    
 	boolean taskComplete;
 	boolean pickupComplete = false;
 	boolean dropComplete = false;
-    taskComplete = Button.ESCAPE.isPressed();
+	taskComplete = Button.ESCAPE.isPressed();
 	  
     while (!taskComplete) {
 		Motor.B.setSpeed(45);
-	    Motor.A.setSpeed(10);
+		Motor.A.setSpeed(10);
 		Motor.C.setSpeed(35);
-	    SoundSensor sound = new SoundSensor(SensorPort.S2);
+		SoundSensor sound = new SoundSensor(SensorPort.S2);
 		LightSensor light = new LightSensor(SensorPort.S1);
        
 		
@@ -28,17 +28,17 @@ public class SoundLight
 			int soundValue = sound.readValue();
 			System.out.println(soundValue);
 			if (soundValue > 40)
-			   {
-				 Motor.B.setSpeed(30);
-				 Motor.B.rotate(-120);
-				 Motor.C.rotate(90);
-				 System.out.println(soundValue);
-				 pickupComplete = true;
-			   } //if
+				{
+				Motor.B.setSpeed(30);
+				Motor.B.rotate(-50);
+				Motor.C.rotate(90);
+				System.out.println(soundValue);
+				pickupComplete = true;
+				} //if
 		} //while pickupComplete
          
         
-        while (dropComplete == false) {
+		while (dropComplete == false) {
 			int soundValue = sound.readValue();
 			int lightValue = light.getLightValue();
 			System.out.println(soundValue);
