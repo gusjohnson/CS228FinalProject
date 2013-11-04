@@ -14,14 +14,14 @@ public class SoundLight
 	boolean pickupComplete = false;
 	boolean dropComplete = false;
 	taskComplete = Button.ESCAPE.isPressed();
-	  
-    while (!taskComplete) {
+	
+	while (!taskComplete) {
 		Motor.B.setSpeed(45);
 		Motor.A.setSpeed(10);
 		Motor.C.setSpeed(35);
 		SoundSensor sound = new SoundSensor(SensorPort.S2);
 		LightSensor light = new LightSensor(SensorPort.S1);
-       
+		
 		
 		while (pickupComplete == false) {
 			Delay.msDelay(200);
