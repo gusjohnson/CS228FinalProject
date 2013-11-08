@@ -31,7 +31,7 @@ public class SoundLight
 				{
 				Motor.B.setSpeed(30);
 				Motor.B.rotate(-50);
-				Motor.C.rotate(90);
+				Motor.C.rotate(-90);
 				System.out.println(soundValue);
 				pickupComplete = true;
 				} //if
